@@ -1,0 +1,72 @@
+/************************************************************
+ * FILE 1: manifest.json
+ * Purpose: Makes the app installable on mobile devices.
+ ************************************************************/
+{
+  "name": "Frequency & Vibration: Dimensional Travel",
+  "short_name": "Shift",
+  "description": "Master the CIA Gateway Process and Dimensional Shifting.",
+  "start_url": "index.php",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#5D3FD3",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192.png?text=Shift",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512.png?text=Shift",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
+/************************************************************
+ * FILE 2: sw.js (Service Worker)
+ * Purpose: Enables offline access and caching.
+ ************************************************************/
+const CACHE_NAME = 'dim-travel-v1';
+const ASSETS = [
+  'index.php',
+  'header.php',
+  'footer.php',
+  'content.php',
+  'nav.php'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});
+
+/************************************************************
+ * FILE 3: head.php (Injection)
+ * Purpose: Registers the PWA features without touching index.php.
+ ************************************************************/
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Shift">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Gateway PWA Active:', reg.scope))
+        .catch(err => console.log('Gateway PWA Offline:', err));
+    });
+  }
+</script>
