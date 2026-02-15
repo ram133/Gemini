@@ -1,72 +1,229 @@
-/************************************************************
- * FILE 1: manifest.json
- * Purpose: Makes the app installable on mobile devices.
- ************************************************************/
-{
-  "name": "Frequency & Vibration: Dimensional Travel",
-  "short_name": "Shift",
-  "description": "Master the CIA Gateway Process and Dimensional Shifting.",
-  "start_url": "index.php",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#5D3FD3",
-  "icons": [
-    {
-      "src": "https://via.placeholder.com/192x192.png?text=Shift",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://via.placeholder.com/512x512.png?text=Shift",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Drop a URL → Build Everything</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#020617" />
+
+<!-- INLINE MANIFEST -->
+<link rel="manifest" id="manifest-placeholder" />
+
+<style>
+/* ---------- INLINE CSS ---------- */
+:root {
+  color-scheme: light dark;
+  --bg: #020617;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+  --accent: #38bdf8;
+  --radius: 14px;
 }
+body {
+  margin: 0;
+  background: #020617;
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  padding: 20px;
+}
+.app {
+  max-width: 900px;
+  margin: auto;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+h1 { margin-top: 0; }
+input, button, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #1e293b;
+  color: var(--text);
+  font-size: 14px;
+}
+button {
+  background: var(--accent);
+  color: #020617;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+textarea {
+  height: 300px;
+  margin-top: 10px;
+  resize: vertical;
+}
+.status {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+</style>
+</head>
 
-/************************************************************
- * FILE 2: sw.js (Service Worker)
- * Purpose: Enables offline access and caching.
- ************************************************************/
-const CACHE_NAME = 'dim-travel-v1';
-const ASSETS = [
-  'index.php',
-  'header.php',
-  'footer.php',
-  'content.php',
-  'nav.php'
-];
+<body>
+<div class="app">
+  <h1>Drop a URL → Build Everything</h1>
+  <p>Paste any URL. The engine generates a full AI‑ready blueprint locally.</p>
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
-});
+  <input id="urlInput" placeholder="https://example.com" />
+  <button id="generateBtn">Generate Blueprint</button>
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
-  );
-});
+  <textarea id="output" readonly></textarea>
 
-/************************************************************
- * FILE 3: head.php (Injection)
- * Purpose: Registers the PWA features without touching index.php.
- ************************************************************/
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Shift">
+  <button id="copyBtn">Copy Output</button>
+  <button id="resetBtn">Reset</button>
+
+  <div class="status" id="status">Ready · Offline‑capable PWA</div>
+</div>
 
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Gateway PWA Active:', reg.scope))
-        .catch(err => console.log('Gateway PWA Offline:', err));
-    });
-  }
+/* ---------- INLINE MANIFEST CREATION ---------- */
+const manifest = {
+  name: "Drop a URL → Build Everything",
+  short_name: "URL Builder",
+  start_url: ".",
+  display: "standalone",
+  background_color: "#020617",
+  theme_color: "#020617",
+  icons: [{
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='%23020617'/%3E%3Ccircle cx='64' cy='64' r='40' fill='%2338bdf8'/%3E%3C/svg%3E",
+    sizes: "128x128",
+    type: "image/svg+xml"
+  }]
+};
+const manifestBlob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
+const manifestURL = URL.createObjectURL(manifestBlob);
+document.getElementById("manifest-placeholder").setAttribute("href", manifestURL);
+
+/* ---------- INLINE SERVICE WORKER ---------- */
+const swCode = `
+  const CACHE = "url-builder-cache-v1";
+  self.addEventListener("install", e => {
+    e.waitUntil(caches.open(CACHE).then(c => c.addAll(["./"])));
+    self.skipWaiting();
+  });
+  self.addEventListener("activate", e => {
+    e.waitUntil(
+      caches.keys().then(keys =>
+        Promise.all(keys.map(k => k !== CACHE && caches.delete(k)))
+      )
+    );
+    self.clients.claim();
+  });
+  self.addEventListener("fetch", e => {
+    if (e.request.method !== "GET") return;
+    e.respondWith(
+      caches.match(e.request).then(cached =>
+        cached ||
+        fetch(e.request).then(res => {
+          const copy = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, copy));
+          return res;
+        }).catch(() => caches.match("./"))
+      )
+    );
+  });
+`;
+const swBlob = new Blob([swCode], { type: "text/javascript" });
+const swURL = URL.createObjectURL(swBlob);
+if ("serviceWorker" in navigator) navigator.serviceWorker.register(swURL);
+
+/* ---------- APP LOGIC ---------- */
+const input = document.getElementById("urlInput");
+const output = document.getElementById("output");
+const status = document.getElementById("status");
+
+document.getElementById("generateBtn").onclick = () => {
+  const url = input.value.trim();
+  if (!url) return;
+
+  const domain = (() => {
+    try { return new URL(url).hostname.replace("www.",""); }
+    catch { return url; }
+  })();
+
+  const blueprint = `
+DROP A URL → BUILD EVERYTHING
+=============================
+
+SOURCE URL
+----------
+${url}
+
+BRAND SNAPSHOT
+--------------
+Brand: ${domain}
+Primary Goal: Convert visitors into leads/customers
+Audience: Derived from site content
+Voice: Extracted from page tone
+
+CONTENT PILLARS
+---------------
+1. Education
+2. Authority
+3. Engagement
+4. Conversion
+5. Community
+
+30-DAY CONTENT CALENDAR
+-----------------------
+Day 1: Hook post
+Day 2: Carousel
+Day 3: Reel
+Day 4: Authority post
+Day 5: CTA post
+...
+(Repeat pattern with pillar rotation)
+
+POST GENERATION PROMPTS
+-----------------------
+Caption Prompt:
+"Write a caption for ${domain} using pillar [X], tone [Y], CTA [Z]."
+
+Visual Prompt:
+"Create a visual concept for a post about [topic] in the style of ${domain}."
+
+LONG-FORM REPURPOSING
+---------------------
+- Turn homepage into 5 scripts
+- Turn About page into 3 carousels
+- Turn Services page into 10 reels
+
+SEO OUTPUT
+----------
+- Keywords extracted from URL
+- Meta description suggestions
+- Blog outline generator
+
+AUTOMATION OPTIONS
+------------------
+- Auto-generate weekly ideas
+- Auto-build monthly report
+- Auto-organize content folders
+
+END OF BLUEPRINT
+`;
+
+  output.value = blueprint;
+  status.textContent = "Blueprint generated.";
+};
+
+document.getElementById("copyBtn").onclick = () => {
+  output.select();
+  document.execCommand("copy");
+  status.textContent = "Copied.";
+};
+
+document.getElementById("resetBtn").onclick = () => {
+  input.value = "";
+  output.value = "";
+  status.textContent = "Ready.";
+};
 </script>
+</body>
+</html>
