@@ -1,202 +1,896 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ram133 · Repository Index</title>
-  <meta name="description" content="Complete listing of all repositories by Clifford Ray Hackett (ram133)" />
-  <style>
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --accent-hover: #79b8ff;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-    h1 a { color: var(--accent); text-decoration: none; }
-    h1 a:hover { color: var(--accent-hover); }
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .count {
-      display: inline-block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      padding: 0.25rem 0.9rem;
-      font-size: 0.85rem;
-      margin-top: 0.8rem;
-      color: var(--muted);
-    }
-    ul {
-      list-style: none;
-      display: grid;
-      gap: 0.5rem;
-    }
-    li {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.7rem 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem 1rem;
-      transition: border-color 0.15s;
-    }
-    li:hover { border-color: var(--accent); }
-    .repo-name {
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-      flex: 1;
-      min-width: 140px;
-    }
-    .repo-name:hover { text-decoration: underline; color: var(--accent-hover); }
-    .links a {
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      border: 1px solid transparent;
-    }
-    .links a:hover {
-      color: var(--text);
-      background: #21262d;
-      border-color: var(--border);
-    }
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCU - AI Multiverse & Live Multimodal Command Center</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            cyan: '#00f3ff',
+                            blue: '#0066ff',
+                            purple: '#8a2be2',
+                            pink: '#ff007f',
+                            dark: '#050b14',
+                            panel: 'rgba(10, 20, 38, 0.75)',
+                            border: 'rgba(0, 243, 255, 0.25)',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                        'scanline': 'scanline 8s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0,243,255,0.2), inset 0 0 5px rgba(0,243,255,0.1)' },
+                            '100%': { boxShadow: '0 0 20px rgba(0,243,255,0.6), inset 0 0 10px rgba(0,243,255,0.3)' }
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Sci-Fi HUD custom scrollbars & grid overlays */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050b14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00f3ff44;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ffaa;
+        }
+        
+        .hud-grid {
+            background-image: linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .hud-border {
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            position: relative;
+        }
+
+        .hud-border::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid #00f3ff;
+            border-left: 2px solid #00f3ff;
+        }
+
+        .hud-border::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid #00f3ff;
+            border-right: 2px solid #00f3ff;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.7), 0 0 20px rgba(0, 243, 255, 0.4);
+        }
+
+        .glow-purple-text {
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8), 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .clip-corner {
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+        }
+
+        .clip-button {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1><a href="https://github.com/ram133">ram133</a> · Repository Index</h1>
-      <p class="subtitle">Clifford Ray Hackett · Guam, USA</p>
-      <div class="count">79 repositories</div>
+<body class="h-full bg-cyber-dark hud-grid flex flex-col font-rajdhani overflow-x-hidden selection:bg-cyber-cyan selection:text-slate-950">
+
+    <!-- TOP HEADER / HUD BAR -->
+    <header class="bg-slate-950/80 border-b border-cyber-cyan/30 px-4 py-3 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md">
+        <div class="flex items-center space-x-4">
+            <div class="p-2 bg-gradient-to-br from-cyber-cyan/20 to-cyber-purple/30 border border-cyber-cyan rounded clip-corner flex items-center justify-center">
+                <i class="fa-solid fa-brain text-cyber-cyan text-2xl animate-pulse"></i>
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="font-orbitron font-extrabold text-lg tracking-wider text-white glow-text">GEMINI MCU-3.1</span>
+                    <span class="bg-cyber-cyan/10 border border-cyber-cyan/40 text-cyber-cyan font-mono text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">TACTICAL MULTIVERSE OPERATIONAL</span>
+                </div>
+                <p class="text-xs text-slate-400 font-mono flex items-center gap-2">
+                    <span class="text-cyber-cyan"><i class="fa-solid fa-user-shield text-xs"></i> MAJOR CLIFFORD RAY HACKETT</span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-indigo-400">CLEARANCE LEVEL 10</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- System Stats Bar -->
+        <div class="hidden xl:flex items-center space-x-6 text-xs font-mono">
+            <div class="flex flex-col items-end">
+                <span class="text-slate-500">QUANTUM FREQ</span>
+                <span id="header-freq" class="text-cyber-cyan font-bold">123.00 BPM / 432 Hz</span>
+            </div>
+            <div class="h-8 w-[1px] bg-slate-800"></div>
+            <div class="flex flex-col items-end">
+                <span class="text-slate-500">AGENT STATUS</span>
+                <span class="text-emerald-400 font-bold flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> AUTONOMOUS ACTIVE
+                </span>
+            </div>
+            <div class="h-8 w-[1px] bg-slate-800"></div>
+            <div class="flex flex-col items-end">
+                <span class="text-slate-500">MULTIVERSE NODE</span>
+                <span class="text-cyber-purple font-bold">EARTH-616 // MCU HUB</span>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="flex items-center space-x-3">
+            <button onclick="triggerEmergencyAlert()" class="clip-button bg-red-950/60 hover:bg-red-900 border border-red-500/50 text-red-400 text-xs font-orbitron font-bold px-3 py-2 transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+                <span class="hidden sm:inline">OVERRIDE</span>
+            </button>
+            <div class="text-right font-mono text-xs text-slate-400 border-l border-slate-800 pl-3">
+                <div id="live-clock" class="text-cyber-cyan font-bold">12:00:00 UTC</div>
+                <div class="text-[10px] text-slate-500">SYS T-OPERATIONAL</div>
+            </div>
+        </div>
     </header>
 
-    <ul>
-      <li><a class="repo-name" href="https://github.com/ram133/.github">.github</a><span class="links"><a href="https://github.com/ram133/.github">GitHub</a> <a href="https://ram133.github.io/.github/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/2509">2509</a><span class="links"><a href="https://github.com/ram133/2509">GitHub</a> <a href="https://ram133.github.io/2509/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/5">5</a><span class="links"><a href="https://github.com/ram133/5">GitHub</a> <a href="https://ram133.github.io/5/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/ADA">ADA</a><span class="links"><a href="https://github.com/ram133/ADA">GitHub</a> <a href="https://ram133.github.io/ADA/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/AI">AI</a><span class="links"><a href="https://github.com/ram133/AI">GitHub</a> <a href="https://ram133.github.io/AI/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/AutoGPT">AutoGPT</a><span class="links"><a href="https://github.com/ram133/AutoGPT">GitHub</a> <a href="https://ram133.github.io/AutoGPT/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/ChatGPT">ChatGPT</a><span class="links"><a href="https://github.com/ram133/ChatGPT">GitHub</a> <a href="https://ram133.github.io/ChatGPT/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/DOCOMO">DOCOMO</a><span class="links"><a href="https://github.com/ram133/DOCOMO">GitHub</a> <a href="https://ram133.github.io/DOCOMO/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/Gemini">Gemini</a><span class="links"><a href="https://github.com/ram133/Gemini">GitHub</a> <a href="https://ram133.github.io/Gemini/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/How-to-Make-a-Computer-Operating-System">How-to-Make-a-Computer-Operating-System</a><span class="links"><a href="https://github.com/ram133/How-to-Make-a-Computer-Operating-System">GitHub</a> <a href="https://ram133.github.io/How-to-Make-a-Computer-Operating-System/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/MAX">MAX</a><span class="links"><a href="https://github.com/ram133/MAX">GitHub</a> <a href="https://ram133.github.io/MAX/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/PHP-Download-Counter">PHP-Download-Counter</a><span class="links"><a href="https://github.com/ram133/PHP-Download-Counter">GitHub</a> <a href="https://ram133.github.io/PHP-Download-Counter/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/Qwen">Qwen</a><span class="links"><a href="https://github.com/ram133/Qwen">GitHub</a> <a href="https://ram133.github.io/Qwen/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/Qwen3.8">Qwen3.8</a><span class="links"><a href="https://github.com/ram133/Qwen3.8">GitHub</a> <a href="https://ram133.github.io/Qwen3.8/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/Scweet">Scweet</a><span class="links"><a href="https://github.com/ram133/Scweet">GitHub</a> <a href="https://ram133.github.io/Scweet/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/XActions">XActions</a><span class="links"><a href="https://github.com/ram133/XActions">GitHub</a> <a href="https://ram133.github.io/XActions/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/agent">agent</a><span class="links"><a href="https://github.com/ram133/agent">GitHub</a> <a href="https://ram133.github.io/agent/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/agentdb">agentdb</a><span class="links"><a href="https://github.com/ram133/agentdb">GitHub</a> <a href="https://ram133.github.io/agentdb/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/api">api</a><span class="links"><a href="https://github.com/ram133/api">GitHub</a> <a href="https://ram133.github.io/api/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/api-vault">api-vault</a><span class="links"><a href="https://github.com/ram133/api-vault">GitHub</a> <a href="https://ram133.github.io/api-vault/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/apps-script-samples">apps-script-samples</a><span class="links"><a href="https://github.com/ram133/apps-script-samples">GitHub</a> <a href="https://ram133.github.io/apps-script-samples/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/asset-store">asset-store</a><span class="links"><a href="https://github.com/ram133/asset-store">GitHub</a> <a href="https://ram133.github.io/asset-store/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/audio-presets">audio-presets</a><span class="links"><a href="https://github.com/ram133/audio-presets">GitHub</a> <a href="https://ram133.github.io/audio-presets/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/awesome-pwa">awesome-pwa</a><span class="links"><a href="https://github.com/ram133/awesome-pwa">GitHub</a> <a href="https://ram133.github.io/awesome-pwa/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/bot2">bot2</a><span class="links"><a href="https://github.com/ram133/bot2">GitHub</a> <a href="https://ram133.github.io/bot2/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/bot3">bot3</a><span class="links"><a href="https://github.com/ram133/bot3">GitHub</a> <a href="https://ram133.github.io/bot3/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/browser-use">browser-use</a><span class="links"><a href="https://github.com/ram133/browser-use">GitHub</a> <a href="https://ram133.github.io/browser-use/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/cli">cli</a><span class="links"><a href="https://github.com/ram133/cli">GitHub</a> <a href="https://ram133.github.io/cli/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/code-boilerplates">code-boilerplates</a><span class="links"><a href="https://github.com/ram133/code-boilerplates">GitHub</a> <a href="https://ram133.github.io/code-boilerplates/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/coin">coin</a><span class="links"><a href="https://github.com/ram133/coin">GitHub</a> <a href="https://ram133.github.io/coin/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/coin2">coin2</a><span class="links"><a href="https://github.com/ram133/coin2">GitHub</a> <a href="https://ram133.github.io/coin2/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/coin3">coin3</a><span class="links"><a href="https://github.com/ram133/coin3">GitHub</a> <a href="https://ram133.github.io/coin3/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/coin4">coin4</a><span class="links"><a href="https://github.com/ram133/coin4">GitHub</a> <a href="https://ram133.github.io/coin4/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/coin5">coin5</a><span class="links"><a href="https://github.com/ram133/coin5">GitHub</a> <a href="https://ram133.github.io/coin5/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/cross-post-automation">cross-post-automation</a><span class="links"><a href="https://github.com/ram133/cross-post-automation">GitHub</a> <a href="https://ram133.github.io/cross-post-automation/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/deer-flow">deer-flow</a><span class="links"><a href="https://github.com/ram133/deer-flow">GitHub</a> <a href="https://ram133.github.io/deer-flow/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/design-assets">design-assets</a><span class="links"><a href="https://github.com/ram133/design-assets">GitHub</a> <a href="https://ram133.github.io/design-assets/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/devitils">devitils</a><span class="links"><a href="https://github.com/ram133/devitils">GitHub</a> <a href="https://ram133.github.io/devitils/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/digital_factory">digital_factory</a><span class="links"><a href="https://github.com/ram133/digital_factory">GitHub</a> <a href="https://ram133.github.io/digital_factory/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/eliza">eliza</a><span class="links"><a href="https://github.com/ram133/eliza">GitHub</a> <a href="https://ram133.github.io/eliza/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/everything-claude-code">everything-claude-code</a><span class="links"><a href="https://github.com/ram133/everything-claude-code">GitHub</a> <a href="https://ram133.github.io/everything-claude-code/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/fastgpt-cloud">fastgpt-cloud</a><span class="links"><a href="https://github.com/ram133/fastgpt-cloud">GitHub</a> <a href="https://ram133.github.io/fastgpt-cloud/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/femtoclaw">femtoclaw</a><span class="links"><a href="https://github.com/ram133/femtoclaw">GitHub</a> <a href="https://ram133.github.io/femtoclaw/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/gas-microsaas">gas-microsaas</a><span class="links"><a href="https://github.com/ram133/gas-microsaas">GitHub</a> <a href="https://ram133.github.io/gas-microsaas/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/guamcoin">guamcoin</a><span class="links"><a href="https://github.com/ram133/guamcoin">GitHub</a> <a href="https://ram133.github.io/guamcoin/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/gyd">gyd</a><span class="links"><a href="https://github.com/ram133/gyd">GitHub</a> <a href="https://ram133.github.io/gyd/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/jFeed">jFeed</a><span class="links"><a href="https://github.com/ram133/jFeed">GitHub</a> <a href="https://ram133.github.io/jFeed/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/jsonframe-cheerio">jsonframe-cheerio</a><span class="links"><a href="https://github.com/ram133/jsonframe-cheerio">GitHub</a> <a href="https://ram133.github.io/jsonframe-cheerio/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/langchain">langchain</a><span class="links"><a href="https://github.com/ram133/langchain">GitHub</a> <a href="https://ram133.github.io/langchain/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/max-git-system">max-git-system</a><span class="links"><a href="https://github.com/ram133/max-git-system">GitHub</a> <a href="https://ram133.github.io/max-git-system/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/mcu_quantum_project">mcu_quantum_project</a><span class="links"><a href="https://github.com/ram133/mcu_quantum_project">GitHub</a> <a href="https://ram133.github.io/mcu_quantum_project/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/micro-saas-kit">micro-saas-kit</a><span class="links"><a href="https://github.com/ram133/micro-saas-kit">GitHub</a> <a href="https://ram133.github.io/micro-saas-kit/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/nanoGPT">nanoGPT</a><span class="links"><a href="https://github.com/ram133/nanoGPT">GitHub</a> <a href="https://ram133.github.io/nanoGPT/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/niche-directory">niche-directory</a><span class="links"><a href="https://github.com/ram133/niche-directory">GitHub</a> <a href="https://ram133.github.io/niche-directory/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/nocodb-cloud">nocodb-cloud</a><span class="links"><a href="https://github.com/ram133/nocodb-cloud">GitHub</a> <a href="https://ram133.github.io/nocodb-cloud/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/odysseus">odysseus</a><span class="links"><a href="https://github.com/ram133/odysseus">GitHub</a> <a href="https://ram133.github.io/odysseus/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/oh-my-cli">oh-my-cli</a><span class="links"><a href="https://github.com/ram133/oh-my-cli">GitHub</a> <a href="https://ram133.github.io/oh-my-cli/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/ollama">ollama</a><span class="links"><a href="https://github.com/ram133/ollama">GitHub</a> <a href="https://ram133.github.io/ollama/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/open-webui-cloud">open-webui-cloud</a><span class="links"><a href="https://github.com/ram133/open-webui-cloud">GitHub</a> <a href="https://ram133.github.io/open-webui-cloud/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/openclaw">openclaw</a><span class="links"><a href="https://github.com/ram133/openclaw">GitHub</a> <a href="https://ram133.github.io/openclaw/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/picoclaw">picoclaw</a><span class="links"><a href="https://github.com/ram133/picoclaw">GitHub</a> <a href="https://ram133.github.io/picoclaw/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/prompt-pack">prompt-pack</a><span class="links"><a href="https://github.com/ram133/prompt-pack">GitHub</a> <a href="https://ram133.github.io/prompt-pack/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/qwen-code-action">qwen-code-action</a><span class="links"><a href="https://github.com/ram133/qwen-code-action">GitHub</a> <a href="https://ram133.github.io/qwen-code-action/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/ram133">ram133</a><span class="links"><a href="https://github.com/ram133/ram133">GitHub</a> <a href="https://ram133.github.io/ram133/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/raycoin">raycoin</a><span class="links"><a href="https://github.com/ram133/raycoin">GitHub</a> <a href="https://ram133.github.io/raycoin/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/rayswallet">rayswallet</a><span class="links"><a href="https://github.com/ram133/rayswallet">GitHub</a> <a href="https://ram133.github.io/rayswallet/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/simple-ipn">simple-ipn</a><span class="links"><a href="https://github.com/ram133/simple-ipn">GitHub</a> <a href="https://ram133.github.io/simple-ipn/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/site-api">site-api</a><span class="links"><a href="https://github.com/ram133/site-api">GitHub</a> <a href="https://ram133.github.io/site-api/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/site-assets">site-assets</a><span class="links"><a href="https://github.com/ram133/site-assets">GitHub</a> <a href="https://ram133.github.io/site-assets/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/site-core">site-core</a><span class="links"><a href="https://github.com/ram133/site-core">GitHub</a> <a href="https://ram133.github.io/site-core/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/site-ui">site-ui</a><span class="links"><a href="https://github.com/ram133/site-ui">GitHub</a> <a href="https://ram133.github.io/site-ui/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/site-utils">site-utils</a><span class="links"><a href="https://github.com/ram133/site-utils">GitHub</a> <a href="https://ram133.github.io/site-utils/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/stable-diffusion-webui">stable-diffusion-webui</a><span class="links"><a href="https://github.com/ram133/stable-diffusion-webui">GitHub</a> <a href="https://ram133.github.io/stable-diffusion-webui/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/supabase">supabase</a><span class="links"><a href="https://github.com/ram133/supabase">GitHub</a> <a href="https://ram133.github.io/supabase/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/template-store">template-store</a><span class="links"><a href="https://github.com/ram133/template-store">GitHub</a> <a href="https://ram133.github.io/template-store/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/twikit">twikit</a><span class="links"><a href="https://github.com/ram133/twikit">GitHub</a> <a href="https://ram133.github.io/twikit/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/vuemmerce">vuemmerce</a><span class="links"><a href="https://github.com/ram133/vuemmerce">GitHub</a> <a href="https://ram133.github.io/vuemmerce/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/web-llm-chat">web-llm-chat</a><span class="links"><a href="https://github.com/ram133/web-llm-chat">GitHub</a> <a href="https://ram133.github.io/web-llm-chat/">Pages</a></span></li>
-      <li><a class="repo-name" href="https://github.com/ram133/x-tweet-scraper">x-tweet-scraper</a><span class="links"><a href="https://github.com/ram133/x-tweet-scraper">GitHub</a> <a href="https://ram133.github.io/x-tweet-scraper/">Pages</a></span></li>
-    </ul>
+    <!-- NAVIGATION TABS -->
+    <nav class="bg-slate-900/90 border-b border-slate-800 px-4 py-2 flex items-center space-x-2 overflow-x-auto text-sm font-orbitron">
+        <button onclick="switchTab('audio')" id="tab-btn-audio" class="tab-btn active px-4 py-2 rounded border border-cyber-cyan/50 bg-cyber-cyan/10 text-cyber-cyan flex items-center space-x-2 transition-all hover:border-cyber-cyan">
+            <i class="fa-solid fa-microphone-lines"></i>
+            <span>Live Audio & Speech</span>
+        </button>
+        <button onclick="switchTab('code')" id="tab-btn-code" class="tab-btn px-4 py-2 rounded border border-slate-800 bg-slate-950/40 text-slate-400 flex items-center space-x-2 transition-all hover:text-white hover:border-slate-700">
+            <i class="fa-solid fa-terminal"></i>
+            <span>Agent Sandbox</span>
+        </button>
+        <button onclick="switchTab('vision')" id="tab-btn-vision" class="tab-btn px-4 py-2 rounded border border-slate-800 bg-slate-950/40 text-slate-400 flex items-center space-x-2 transition-all hover:text-white hover:border-slate-700">
+            <i class="fa-solid fa-eye"></i>
+            <span>Vision & Multimodal</span>
+        </button>
+        <button onclick="switchTab('tactical')" id="tab-btn-tactical" class="tab-btn px-4 py-2 rounded border border-slate-800 bg-slate-950/40 text-slate-400 flex items-center space-x-2 transition-all hover:text-white hover:border-slate-700">
+            <i class="fa-solid fa-globe-americas"></i>
+            <span>Multiverse Tactical Map</span>
+        </button>
+        <button onclick="switchTab('generator')" id="tab-btn-generator" class="tab-btn px-4 py-2 rounded border border-slate-800 bg-slate-950/40 text-slate-400 flex items-center space-x-2 transition-all hover:text-white hover:border-slate-700">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>App Generator Preview</span>
+        </button>
+    </nav>
 
-    <footer>
-      Generated index · <a href="https://github.com/ram133">github.com/ram133</a> · All repositories listed above
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full flex flex-col space-y-6">
+
+        <!-- ALERT BANNER -->
+        <div id="mcu-alert" class="hidden bg-red-950/80 border border-red-500 text-red-200 p-4 rounded-lg clip-corner flex items-center justify-between animate-pulse">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-shield-virus text-2xl text-red-400"></i>
+                <div>
+                    <h4 class="font-orbitron font-bold text-sm text-red-400">MULTIVERSE ANOMALY DETECTED</h4>
+                    <p class="text-xs font-mono text-red-200">Quantum containment breach reported in Sector 07-B. Gemini autonomous protocol standing by for Major Hackett's command.</p>
+                </div>
+            </div>
+            <button onclick="triggerEmergencyAlert()" class="text-xs bg-red-900/60 hover:bg-red-800 border border-red-400 px-3 py-1 rounded font-mono">DISMISS</button>
+        </div>
+
+        <!-- TAB 1: LIVE AUDIO & SPEECH SYNTH SIMULATOR -->
+        <section id="tab-audio" class="tab-content grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Panel: Speech Synth Controls -->
+            <div class="lg:col-span-1 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-cyber-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> Voice & Synthesizer Engine
+                    </h3>
+                    <span class="text-xs font-mono bg-cyber-cyan/10 text-cyber-cyan px-2 py-0.5 rounded border border-cyber-cyan/30">Gemini 2.5 TTS</span>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="text-xs font-mono text-slate-400 block">SELECT VOICE PROFILE</label>
+                    <select id="voice-select" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 font-mono focus:border-cyber-cyan focus:outline-none">
+                        <option value="Zephyr">Zephyr (Bright / Command AI)</option>
+                        <option value="Puck">Puck (Upbeat Tactical)</option>
+                        <option value="Fenrir">Fenrir (Excitable Warning Signal)</option>
+                        <option value="Kore">Kore (Firm MCU Advisor)</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-mono text-slate-400 block">VOICE STYLE & INSTRUCTION PROMPT</label>
+                    <textarea id="tts-prompt" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-sm font-mono text-slate-200 focus:border-cyber-cyan focus:outline-none" placeholder="Enter prompt or tone directives...">Speak with tactical precision and authority to Major Clifford Ray Hackett: All Multiverse defense grids are operating at nominal capacity.</textarea>
+                </div>
+
+                <button onclick="simulateTTS()" id="synth-btn" class="clip-button bg-gradient-to-r from-cyber-cyan to-cyber-blue hover:from-cyan-400 hover:to-blue-600 text-slate-950 font-orbitron font-bold py-3 px-4 rounded transition-all flex items-center justify-center space-x-2 shadow-lg shadow-cyber-cyan/20">
+                    <i class="fa-solid fa-play"></i>
+                    <span>SYNTHESIZE SPEECH STREAM</span>
+                </button>
+
+                <div class="border-t border-slate-800 pt-3 space-y-2">
+                    <span class="text-xs font-mono text-slate-400 block">TACTICAL VOICE COMMAND TRIPLETS</span>
+                    <div class="grid grid-cols-1 gap-2 text-xs font-mono">
+                        <button onclick="setVoicePreset('Status Report', 'Deliver full multiverse status report to Major Hackett with concise metrics.')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 p-2 rounded text-left border border-slate-800 hover:border-cyber-cyan/40 flex items-center justify-between">
+                            <span><i class="fa-solid fa-list-check text-cyber-cyan mr-1"></i> Status Briefing</span>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+                        </button>
+                        <button onclick="setVoicePreset('Multiverse Alert', 'Say in a urgent tactical tone: Alert Major Hackett! Quantum rift detected in dimension 838.')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 p-2 rounded text-left border border-slate-800 hover:border-cyber-cyan/40 flex items-center justify-between">
+                            <span><i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i> Quantum Rift Alert</span>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+                        </button>
+                        <button onclick="setVoicePreset('AI Protocol', 'Confirm in a calm futuristic voice: Autonomous protocols fully deployed, sir.')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 p-2 rounded text-left border border-slate-800 hover:border-cyber-cyan/40 flex items-center justify-between">
+                            <span><i class="fa-solid fa-robot text-purple-400 mr-1"></i> Protocol Confirmation</span>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Audio Visualization Canvas & Stream Feed -->
+            <div class="lg:col-span-2 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col justify-between space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <h3 class="font-orbitron font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-wave-square text-cyber-cyan"></i> Real-time Audio Oscilloscope
+                        </h3>
+                        <span id="audio-status-badge" class="bg-slate-800 text-slate-400 text-xs font-mono px-2 py-0.5 rounded border border-slate-700">IDLE</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-mono text-slate-400">
+                        <span>FORMAT: PCM16 24kHz</span>
+                    </div>
+                </div>
+
+                <!-- Canvas Visualizer -->
+                <div class="relative bg-slate-950 border border-slate-800 rounded-lg h-52 overflow-hidden flex items-center justify-center">
+                    <canvas id="audio-canvas" class="w-full h-full"></canvas>
+                    <div id="canvas-overlay-text" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/60 pointer-events-none">
+                        <i class="fa-solid fa-microphone-slash text-slate-600 text-3xl mb-2"></i>
+                        <span class="text-xs font-mono text-slate-500">CLICK 'SYNTHESIZE' TO INITIALIZE AUDIO STREAM</span>
+                    </div>
+                </div>
+
+                <!-- Live Transcript Console -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-4 font-mono text-xs space-y-2 h-44 overflow-y-auto">
+                    <div class="text-slate-500 border-b border-slate-900 pb-1 flex justify-between">
+                        <span>VOICE LOG TRANSCRIPTION FEED</span>
+                        <span class="text-cyber-cyan">MCU LOG-SYNC #9942</span>
+                    </div>
+                    <div id="transcript-feed" class="space-y-2 text-slate-300">
+                        <p class="text-slate-600">[System initialized. Awaiting Major Hackett's audio directives...]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: INTERACTIVE CODE INTERPRETER & AUTONOMOUS AGENT SANDBOX -->
+        <section id="tab-code" class="tab-content hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Code Editor Side -->
+            <div class="bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-cyber-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> Autonomous Agent Script Engine
+                    </h3>
+                    <div class="flex space-x-2">
+                        <button onclick="loadCodePreset('multiverse')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono px-2 py-1 rounded border border-slate-700">Multiverse Scan</button>
+                        <button onclick="loadCodePreset('defense')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono px-2 py-1 rounded border border-slate-700">Defense Mesh</button>
+                    </div>
+                </div>
+
+                <div class="flex-1 bg-slate-950 border border-slate-800 rounded-lg p-3 font-mono text-xs text-emerald-400 overflow-x-auto">
+                    <textarea id="agent-code" rows="12" class="w-full bg-transparent border-none text-emerald-400 font-mono text-xs focus:outline-none resize-none leading-relaxed" spellcheck="false">
+# MCU Autonomous Defense Protocol
+import time, math, random
+
+def execute_multiverse_defense(sector_id, commander="Major Hackett"):
+    print(f"[AGENT INIT] Autonomous protocol initiated by {commander}")
+    quantum_stability = round(random.uniform(94.2, 99.8), 2)
+    
+    print(f"[SCANNING] Sector {sector_id} quantum baseline...")
+    time.sleep(0.5)
+    
+    anomalies = [f"Rift-X{random.randint(100,999)}" for _ in range(2)]
+    print(f"[ANALYSIS] Detected anomalies: {anomalies}")
+    print(f"[STATUS] Stability index: {quantum_stability}% - ALL SYSTEMS STABLE")
+    
+    return {"status": "SECURE", "stability": quantum_stability}
+
+execute_multiverse_defense("07-B")
+</textarea>
+                </div>
+
+                <button onclick="executeAgentCode()" class="clip-button bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-orbitron font-bold py-3 px-4 rounded transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span>EXECUTE AGENT SANDBOX CODE</span>
+                </button>
+            </div>
+
+            <!-- Terminal Output Side -->
+            <div class="bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical text-cyber-cyan"></i> Agent Terminal & Execution Logs
+                    </h3>
+                    <span class="text-xs font-mono text-slate-500">PYTHON 3.12 SIMULATED</span>
+                </div>
+
+                <div id="terminal-out" class="bg-slate-950 border border-slate-800 rounded-lg p-4 font-mono text-xs text-slate-300 h-80 overflow-y-auto space-y-2">
+                    <p class="text-slate-600">[Terminal Ready. Click execute to run the code agent...]</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                        <span class="text-slate-500 block">EXECUTION TIME</span>
+                        <span id="exec-time" class="text-cyber-cyan font-bold">0.00 ms</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                        <span class="text-slate-500 block">MEMORY ALLOCATION</span>
+                        <span class="text-cyber-purple font-bold">14.2 MB / 1024 MB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: VISION & MULTIMODAL SCANNER -->
+        <section id="tab-vision" class="tab-content hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Scanner Inputs -->
+            <div class="lg:col-span-1 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-cyber-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-camera"></i> Vision Scanner Feed
+                    </h3>
+                    <span class="text-xs font-mono bg-indigo-950 text-indigo-400 px-2 py-0.5 rounded border border-indigo-800">Gemini 3.1 Vision</span>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="text-xs font-mono text-slate-400 block">SELECT MULTIMODAL SUBJECT</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                        <button onclick="selectVisionSample('anomaly')" class="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-cyber-cyan rounded text-left text-slate-300">
+                            <i class="fa-solid fa-atom text-cyan-400 mr-1"></i> Quantum Rift
+                        </button>
+                        <button onclick="selectVisionSample('blueprint')" class="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-cyber-cyan rounded text-left text-slate-300">
+                            <i class="fa-solid fa-diagram-project text-purple-400 mr-1"></i> MCU Core Map
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-mono text-slate-400 block">VISION ANALYSIS PROMPT</label>
+                    <input id="vision-prompt" type="text" class="w-full bg-slate-950 border border-slate-700 rounded p-2.5 text-xs font-mono text-slate-200 focus:border-cyber-cyan focus:outline-none" value="Identify structural anomalies and energy flux density.">
+                </div>
+
+                <button onclick="runVisionScan()" id="scan-btn" class="clip-button bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-orbitron font-bold py-3 px-4 rounded transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-expand"></i>
+                    <span>RUN MULTIMODAL SCAN</span>
+                </button>
+            </div>
+
+            <!-- Vision Display & HUD Overlay -->
+            <div class="lg:col-span-2 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-orbitron font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-crosshairs text-cyber-cyan"></i> Optical Recognition HUD
+                    </h3>
+                    <span id="scan-status" class="text-xs font-mono text-slate-400">STATUS: READY</span>
+                </div>
+
+                <!-- Simulated Image Box with Scan Grid -->
+                <div class="relative bg-slate-950 border border-slate-800 rounded-lg h-64 overflow-hidden flex items-center justify-center">
+                    <div id="vision-image-bg" class="w-full h-full bg-cover bg-center transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop');"></div>
+                    
+                    <!-- Scanline effect overlay -->
+                    <div id="scan-line" class="hidden absolute inset-0 bg-gradient-to-b from-transparent via-cyber-cyan/30 to-transparent h-10 animate-scanline pointer-events-none"></div>
+
+                    <!-- Bounding Box Annotations -->
+                    <div id="bounding-box-1" class="hidden absolute border-2 border-cyber-cyan bg-cyber-cyan/10 rounded p-1 text-[10px] font-mono text-cyber-cyan top-12 left-1/4 animate-pulse">
+                        ANOMALY CORE [FLUX: 98.4%]
+                    </div>
+                </div>
+
+                <!-- Multimodal Breakdown Output -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-4 font-mono text-xs space-y-2">
+                    <span class="text-slate-500 block border-b border-slate-900 pb-1">AI MULTIMODAL ANALYTICAL REPORT</span>
+                    <div id="vision-results" class="text-slate-300 space-y-1">
+                        <p class="text-slate-600">[Awaiting optical scan trigger...]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: MULTIVERSE TACTICAL MAP & QUANTUM FREQUENCY TUNER -->
+        <section id="tab-tactical" class="tab-content hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Quantum Tuner Control -->
+            <div class="lg:col-span-1 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-cyber-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> Quantum Frequency Tuner
+                    </h3>
+                    <span class="text-xs font-mono text-cyber-pink font-bold">123 BPM</span>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                            <span>RESONANCE BEAT (BPM)</span>
+                            <span id="bpm-val" class="text-cyber-cyan font-bold">123 BPM</span>
+                        </div>
+                        <input id="bpm-slider" type="range" min="60" max="180" value="123" oninput="updateFrequency()" class="w-full accent-cyber-cyan bg-slate-900 rounded cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                            <span>DIMENSIONAL HERTZ (Hz)</span>
+                            <span id="hz-val" class="text-cyber-purple font-bold">432 Hz</span>
+                        </div>
+                        <input id="hz-slider" type="range" min="200" max="960" value="432" oninput="updateFrequency()" class="w-full accent-cyber-purple bg-slate-900 rounded cursor-pointer">
+                    </div>
+                </div>
+
+                <button onclick="toggleSynthRockBeat()" id="beat-btn" class="clip-button bg-slate-900 hover:bg-slate-800 border border-cyber-cyan text-cyber-cyan font-orbitron font-bold py-3 px-4 rounded transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-compact-disc text-cyber-cyan"></i>
+                    <span id="beat-btn-text">PLAY 123 BPM SYNTH-ROCK BEAT</span>
+                </button>
+
+                <div class="bg-slate-950 p-3 rounded border border-slate-800 text-xs font-mono text-slate-400 space-y-1">
+                    <span class="text-slate-500 block">MULTIVERSE COORDINATES</span>
+                    <p class="text-slate-300">DIM-616 // TACTICAL NODE: <span class="text-cyber-cyan">MAJOR HACKETT</span></p>
+                    <p class="text-slate-300">SECTOR GRID: <span class="text-cyber-purple">07-ALPHA-MCU</span></p>
+                </div>
+            </div>
+
+            <!-- Tactical Map Visualizer -->
+            <div class="lg:col-span-2 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-orbitron font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-earth-americas text-cyber-cyan"></i> Multiverse Node Tactical Grid
+                    </h3>
+                    <div class="flex items-center space-x-2 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span class="text-slate-400">6 ACTIVE NODES</span>
+                    </div>
+                </div>
+
+                <!-- Tactical Grid Map Canvas -->
+                <div class="relative bg-slate-950 border border-slate-800 rounded-lg h-72 overflow-hidden flex items-center justify-center hud-grid">
+                    <canvas id="map-canvas" class="w-full h-full"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: INSTANT WEB APP GENERATOR PREVIEW -->
+        <section id="tab-generator" class="tab-content hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- App Builder Controls -->
+            <div class="lg:col-span-1 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="font-orbitron font-bold text-cyber-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> App Generator Engine
+                    </h3>
+                    <span class="text-xs font-mono bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800">Gemini Code</span>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-mono text-slate-400 block">APP PROMPT DIRECTIVE</label>
+                    <textarea id="app-prompt" rows="4" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-xs font-mono text-slate-200 focus:border-cyber-cyan focus:outline-none" placeholder="Describe the single-file application to generate...">Create a tactical multiverse asset tracker widget for Major Clifford Ray Hackett with live filters and status charts.</textarea>
+                </div>
+
+                <button onclick="generateInstantApp()" id="gen-btn" class="clip-button bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-orbitron font-bold py-3 px-4 rounded transition-all flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>GENERATE & RENDER APP</span>
+                </button>
+            </div>
+
+            <!-- Sandbox App Preview Box -->
+            <div class="lg:col-span-2 bg-cyber-panel border border-cyber-border rounded-xl p-5 hud-border flex flex-col space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-orbitron font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-cyber-cyan"></i> Live Generated App Preview Sandbox
+                    </h3>
+                    <span class="text-xs font-mono text-slate-500">SANDBOX IFRAME</span>
+                </div>
+
+                <!-- Preview Container -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg h-96 overflow-hidden relative">
+                    <iframe id="app-preview-frame" class="w-full h-full border-0 bg-slate-950"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER HUD -->
+    <footer class="bg-slate-950/90 border-t border-slate-800 px-6 py-3 mt-auto flex flex-col md:flex-row items-center justify-between text-xs font-mono text-slate-500">
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <span class="text-cyber-cyan">MAJOR CLIFFORD RAY HACKETT</span>
+            <span>- MCU MULTIVERSE COMMAND UNIT COMMAND DECK</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-slate-400">GEMINI CAPABILITIES SHOWCASE</span>
+            <span class="text-slate-600">|</span>
+            <span class="text-emerald-400"><i class="fa-solid fa-circle text-[8px] mr-1"></i> ONLINE</span>
+        </div>
     </footer>
-  </div>
+
+    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
+    <script>
+        // --- 1. CLOCK & GLOBAL INITIALIZATION ---
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toUTCString().split(' ')[4] + ' UTC';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- 2. TAB SWITCHING SYSTEM ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-cyber-cyan', 'bg-cyber-cyan/10', 'text-cyber-cyan');
+                btn.classList.add('border-slate-800', 'bg-slate-950/40', 'text-slate-400');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.classList.add('active', 'border-cyber-cyan', 'bg-cyber-cyan/10', 'text-cyber-cyan');
+            activeBtn.classList.remove('border-slate-800', 'bg-slate-950/40', 'text-slate-400');
+
+            if (tabId === 'tactical') drawTacticalMap();
+        }
+
+        // --- 3. SPEECH & AUDIO VISUALIZER SIMULATOR ---
+        let audioCtx, analyser, isSynthesizing = false, animFrame;
+
+        function setVoicePreset(title, text) {
+            document.getElementById('tts-prompt').value = text;
+            simulateTTS();
+        }
+
+        function simulateTTS() {
+            const prompt = document.getElementById('tts-prompt').value;
+            const voice = document.getElementById('voice-select').value;
+            const statusBadge = document.getElementById('audio-status-badge');
+            const transcript = document.getElementById('transcript-feed');
+            const overlay = document.getElementById('canvas-overlay-text');
+
+            if (!prompt) return;
+
+            statusBadge.innerText = 'SYNTHESIZING';
+            statusBadge.className = 'bg-amber-950 text-amber-400 text-xs font-mono px-2 py-0.5 rounded border border-amber-800';
+            overlay.classList.add('hidden');
+
+            // Log transcription entry
+            const logEntry = document.createElement('div');
+            logEntry.className = 'border-l-2 border-cyber-cyan pl-2 py-1 bg-slate-900/60 rounded-r';
+            logEntry.innerHTML = `<span class="text-cyber-cyan font-bold">[${voice}]:</span> "${prompt}"`;
+            transcript.prepend(logEntry);
+
+            startAudioVisualization();
+
+            setTimeout(() => {
+                statusBadge.innerText = 'STREAMING AUDIO';
+                statusBadge.className = 'bg-emerald-950 text-emerald-400 text-xs font-mono px-2 py-0.5 rounded border border-emerald-800';
+            }, 600);
+
+            setTimeout(() => {
+                statusBadge.innerText = 'IDLE';
+                statusBadge.className = 'bg-slate-800 text-slate-400 text-xs font-mono px-2 py-0.5 rounded border border-slate-700';
+                stopAudioVisualization();
+            }, 5000);
+        }
+
+        function startAudioVisualization() {
+            const canvas = document.getElementById('audio-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            isSynthesizing = true;
+            let phase = 0;
+
+            function drawWave() {
+                if (!isSynthesizing) return;
+                ctx.fillStyle = 'rgba(5, 11, 20, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#00f3ff';
+                ctx.beginPath();
+
+                const sliceWidth = canvas.width / 100;
+                let x = 0;
+
+                for (let i = 0; i < 100; i++) {
+                    const v = Math.sin(i * 0.1 + phase) * Math.cos(i * 0.05 + phase);
+                    const y = (canvas.height / 2) + v * 40 * (Math.random() * 0.5 + 0.8);
+
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+
+                    x += sliceWidth;
+                }
+
+                ctx.stroke();
+                phase += 0.15;
+                animFrame = requestAnimationFrame(drawWave);
+            }
+            drawWave();
+        }
+
+        function stopAudioVisualization() {
+            isSynthesizing = false;
+            cancelAnimationFrame(animFrame);
+            const canvas = document.getElementById('audio-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('canvas-overlay-text').classList.remove('hidden');
+        }
+
+        // --- 4. CODE AGENT SANDBOX ENGINE ---
+        function loadCodePreset(preset) {
+            const textarea = document.getElementById('agent-code');
+            if (preset === 'multiverse') {
+                textarea.value = `# MCU Multiverse Scan Protocol
+import random
+
+def scan_multiverse_sectors():
+    sectors = ["Dimension-616", "Earth-838", "Sector-199999"]
+    for sector in sectors:
+        flux = round(random.uniform(12.0, 99.9), 1)
+        print(f"[NODE SCAN] {sector} -> Energy Flux: {flux} GW")
+
+scan_multiverse_sectors()`;
+            } else if (preset === 'defense') {
+                textarea.value = `# Defense Shield Matrix Engine
+def deploy_defense_grid(commander):
+    print(f"[COMMAND] Override authorized by {commander}")
+    print("[MATRIX] Aligning quantum shield phase at 123 BPM...")
+    print("[RESULT] Shield operational. Multiverse perimeter secure.")
+
+deploy_defense_grid("Major Clifford Ray Hackett")`;
+            }
+        }
+
+        function executeAgentCode() {
+            const code = document.getElementById('agent-code').value;
+            const terminal = document.getElementById('terminal-out');
+            const execTime = document.getElementById('exec-time');
+
+            const start = performance.now();
+            terminal.innerHTML = `<p class="text-cyber-cyan">[INITIATING GEMINI CODE AGENT EXECUTOR...]</p>`;
+
+            setTimeout(() => {
+                const lines = code.split('\n');
+                lines.forEach(line => {
+                    if (line.includes('print(')) {
+                        const content = line.match(/print\((.*?)\)/);
+                        if (content) {
+                            let text = content[1].replace(/f?["']/g, '');
+                            if (text.includes('commander')) text = text.replace('{commander}', 'Major Hackett');
+                            const p = document.createElement('p');
+                            p.className = 'text-emerald-400';
+                            p.innerText = `> ${text}`;
+                            terminal.appendChild(p);
+                        }
+                    }
+                });
+
+                const end = performance.now();
+                execTime.innerText = `${(end - start).toFixed(2)} ms`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }, 400);
+        }
+
+        // --- 5. VISION & MULTIMODAL SCANNER SIMULATOR ---
+        function selectVisionSample(type) {
+            const imgBg = document.getElementById('vision-image-bg');
+            if (type === 'anomaly') {
+                imgBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop')";
+            } else {
+                imgBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1507499739999-097706ad8914?q=80&w=1000&auto=format&fit=crop')";
+            }
+        }
+
+        function runVisionScan() {
+            const scanLine = document.getElementById('scan-line');
+            const box = document.getElementById('bounding-box-1');
+            const results = document.getElementById('vision-results');
+            const status = document.getElementById('scan-status');
+
+            scanLine.classList.remove('hidden');
+            status.innerText = 'SCANNING OPTICAL FEED...';
+            status.className = 'text-xs font-mono text-cyber-cyan animate-pulse';
+
+            setTimeout(() => {
+                scanLine.classList.add('hidden');
+                box.classList.remove('hidden');
+                status.innerText = 'ANALYSIS COMPLETE';
+                status.className = 'text-xs font-mono text-emerald-400';
+
+                results.innerHTML = `
+                    <p class="text-emerald-400"><i class="fa-solid fa-check mr-1"></i> Anomaly Detected: High-density Quantum Rift</p>
+                    <p class="text-slate-300">Spatial Coordinates: Sector 07-B [X: 142.2, Y: -89.4]</p>
+                    <p class="text-slate-300">Threat Level: LOW / CONTAINED</p>
+                    <p class="text-indigo-400">Recommendation: Deploy Gemini Autonomous Protocol for stabilization.</p>
+                `;
+            }, 1200);
+        }
+
+        // --- 6. MULTIVERSE TACTICAL MAP & QUANTUM BEAT TUNER ---
+        let isPlayingBeat = false;
+        let audioOscillator, audioGain, audioInterval;
+
+        function updateFrequency() {
+            const bpm = document.getElementById('bpm-slider').value;
+            const hz = document.getElementById('hz-slider').value;
+            document.getElementById('bpm-val').innerText = `${bpm} BPM`;
+            document.getElementById('hz-val').innerText = `${hz} Hz`;
+            document.getElementById('header-freq').innerText = `${bpm}.00 BPM / ${hz} Hz`;
+        }
+
+        function toggleSynthRockBeat() {
+            const btnText = document.getElementById('beat-btn-text');
+            if (!isPlayingBeat) {
+                isPlayingBeat = true;
+                btnText.innerText = 'STOP SYNTH-ROCK BEAT';
+                startSynthRockSound();
+            } else {
+                isPlayingBeat = false;
+                btnText.innerText = 'PLAY 123 BPM SYNTH-ROCK BEAT';
+                stopSynthRockSound();
+            }
+        }
+
+        function startSynthRockSound() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioCtx();
+                const bpm = parseInt(document.getElementById('bpm-slider').value);
+                const intervalMs = (60 / bpm) * 1000 / 2;
+
+                audioInterval = setInterval(() => {
+                    if (!isPlayingBeat) return;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.value = parseInt(document.getElementById('hz-slider').value) / 2;
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.15);
+                }, intervalMs);
+            } catch (e) {
+                console.log('Web Audio API initialized');
+            }
+        }
+
+        function stopSynthRockSound() {
+            if (audioInterval) clearInterval(audioInterval);
+            if (audioCtx) audioCtx.close();
+        }
+
+        function drawTacticalMap() {
+            const canvas = document.getElementById('map-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const nodes = [
+                { x: canvas.width * 0.2, y: canvas.height * 0.3, label: 'Earth-616 (MCU HUB)' },
+                { x: canvas.width * 0.7, y: canvas.height * 0.2, label: 'Sector-838' },
+                { x: canvas.width * 0.5, y: canvas.height * 0.7, label: 'Dimension-X' },
+                { x: canvas.width * 0.8, y: canvas.height * 0.8, label: 'Quantum Realm' },
+            ];
+
+            // Draw connections
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.2)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // Draw nodes
+            nodes.forEach(node => {
+                ctx.fillStyle = '#00f3ff';
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '10px JetBrains Mono';
+                ctx.fillText(node.label, node.x + 10, node.y + 4);
+            });
+        }
+
+        // --- 7. INSTANT APP GENERATOR PREVIEW ---
+        function generateInstantApp() {
+            const iframe = document.getElementById('app-preview-frame');
+            const prompt = document.getElementById('app-prompt').value;
+
+            const generatedHtml = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                </head>
+                <body class="bg-slate-900 text-slate-100 p-6 font-sans">
+                    <div class="max-w-md mx-auto bg-slate-800 border border-cyan-500/30 rounded-xl p-5 shadow-2xl">
+                        <div class="flex items-center justify-between mb-4 border-b border-slate-700 pb-3">
+                            <h2 class="text-cyan-400 font-bold text-sm">MCU ASSET TRACKER</h2>
+                            <span class="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">LIVE</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mb-4">Generated directive for Major Hackett: "${prompt}"</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between bg-slate-900 p-2.5 rounded border border-slate-700">
+                                <span>Multiverse Relay Node Alpha</span>
+                                <span class="text-emerald-400 font-bold">ONLINE</span>
+                            </div>
+                            <div class="flex justify-between bg-slate-900 p-2.5 rounded border border-slate-700">
+                                <span>Quantum Shield Mesh</span>
+                                <span class="text-cyan-400 font-bold">100% CAP</span>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            iframe.srcdoc = generatedHtml;
+        }
+
+        // --- 8. EMERGENCY OVERRIDE TRIGGER ---
+        function triggerEmergencyAlert() {
+            const banner = document.getElementById('mcu-alert');
+            banner.classList.toggle('hidden');
+        }
+
+        // Initialize App Generator on startup
+        window.onload = function() {
+            generateInstantApp();
+        };
+    </script>
 </body>
-</html>
